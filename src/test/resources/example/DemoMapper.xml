@@ -15,29 +15,6 @@
         id, `name`, type, `status`, version, create_time, update_time
     </sql>
 
-    <select id="selectByTypeList" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List"/>
-        from demo
-        where type IN
-        <foreach collection="list" item="type" index="index" open="(" close=")" separator=",">
-            #{type}
-        </foreach>
-    </select>
-
-    <select id="selectByTypeArray" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List"/>
-        from demo
-        where type IN
-        <foreach collection="array" item="type" index="index" open="(" close=")" separator=",">
-            #{type}
-        </foreach>
-    </select>
-
-    <!--
-    -->
-
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
