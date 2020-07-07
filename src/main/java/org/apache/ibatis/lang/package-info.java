@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2018 the original author or authors.
+ *    Copyright 2009-2020 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,31 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.apache.ibatis.mapping;
-
-import java.sql.ResultSet;
-
 /**
- * @author Clinton Begin
+ * Java Language Package.
  */
-public enum ResultSetType {
-  /**
-   * behavior with same as unset (driver dependent).
-   *
-   * @since 3.5.0
-   */
-  DEFAULT(-1),
-  FORWARD_ONLY(ResultSet.TYPE_FORWARD_ONLY),
-  SCROLL_INSENSITIVE(ResultSet.TYPE_SCROLL_INSENSITIVE),
-  SCROLL_SENSITIVE(ResultSet.TYPE_SCROLL_SENSITIVE);
-
-  private final int value;
-
-  ResultSetType(int value) {
-    this.value = value;
-  }
-
-  public int getValue() {
-    return value;
-  }
-}
+package org.apache.ibatis.lang;

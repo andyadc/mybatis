@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2017 the original author or authors.
+ *    Copyright 2009-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,40 +13,24 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.apache.ibatis.plugin;
+
+package org.apache.ibatis.reflection.invoker;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/**
- * @author Clinton Begin
- */
-public class Invocation {
+import org.apache.ibatis.reflection.ReflectionException;
 
-  private final Object target;
-  private final Method method;
-  private final Object[] args;
+public class AmbiguousMethodInvoker extends MethodInvoker {
+  private final String exceptionMessage;
 
-  public Invocation(Object target, Method method, Object[] args) {
-    this.target = target;
-    this.method = method;
-    this.args = args;
+  public AmbiguousMethodInvoker(Method method, String exceptionMessage) {
+    super(method);
+    this.exceptionMessage = exceptionMessage;
   }
 
-  public Object getTarget() {
-    return target;
+  @Override
+  public Object invoke(Object target, Object[] args) throws IllegalAccessException, InvocationTargetException {
+    throw new ReflectionException(exceptionMessage);
   }
-
-  public Method getMethod() {
-    return method;
-  }
-
-  public Object[] getArgs() {
-    return args;
-  }
-
-  public Object proceed() throws InvocationTargetException, IllegalAccessException {
-    return method.invoke(target, args);
-  }
-
 }
