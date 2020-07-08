@@ -19,10 +19,10 @@ import java.io.InputStream;
  * @author andy.an
  * @since 2019/4/10
  */
-public class DemoExampleTest {
+class DemoExampleTest {
 
     @Test
-    public void testRunWithXML() throws Exception {
+    void testQueryWithXML() throws Exception {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -30,7 +30,7 @@ public class DemoExampleTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         DemoMapper demoMapper = sqlSession.getMapper(DemoMapper.class);
-        Demo demo = demoMapper.selectByPrimaryKey(18L);
+        Demo demo = demoMapper.selectByPrimaryKey(220L);
         System.out.println(demo.getId() + ", " + demo.getName() + ", " + demo.getCreateTime());
 
         sqlSession.close();
@@ -40,7 +40,7 @@ public class DemoExampleTest {
      * Java编码方式配置mybatis
      */
     @Test
-    public void testRunWithNoXML() {
+    void testQueryWithoutXML() {
         // 构建数据库连接池
         PooledDataSource dataSource = new PooledDataSource();
         dataSource.setDriver("com.mysql.cj.jdbc.Driver");
@@ -68,7 +68,7 @@ public class DemoExampleTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         DemoMapper demoMapper = sqlSession.getMapper(DemoMapper.class);
-        Demo demo = demoMapper.selectByPrimaryKey(18L);
+        Demo demo = demoMapper.queryByPrimaryKey(220L);
         System.out.println(demo.getId() + ", " + demo.getName() + ", " + demo.getCreateTime());
 
         sqlSession.close();
