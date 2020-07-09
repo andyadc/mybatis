@@ -27,7 +27,7 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insertSelective" parameterType="org.mybatis.example.Demo"
+    <insert id="insertSelective" parameterType="demo"
             useGeneratedKeys="true"
             keyProperty="id">
         insert into demo
